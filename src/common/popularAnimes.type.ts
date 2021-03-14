@@ -3,10 +3,10 @@ export interface PopularAnimes {
 }
 
 export interface Data {
-    Page: Page;
+    popular: Popular;
 }
 
-export interface Page {
+export interface Popular {
     pageInfo: PageInfo;
     media: Media[];
 }
@@ -14,10 +14,10 @@ export interface Page {
 export interface Media {
     title: Title;
     coverImage: CoverImage;
-    description: string;
     id: number;
-    episodes: number;
     bannerImage: string;
+    description: string;
+    episodes: number;
 }
 
 export interface CoverImage {
