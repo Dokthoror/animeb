@@ -25,6 +25,17 @@ const config = {
                 test: /\.vue$/,
                 use: "vue-loader",
             },
+            {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: "ts-loader",
+                        options: {
+                            appendTsSuffixTo: [/\.vue$/],
+                        },
+                    },
+                ],
+            },
         ],
     },
     plugins: [new VueLoaderPlugin()],
@@ -32,6 +43,7 @@ const config = {
         alias: {
             vue$: "vue/dist/vue.esm.js",
         },
+        extensions: [".ts", ".js"],
     },
 };
 
