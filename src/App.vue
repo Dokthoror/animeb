@@ -6,14 +6,16 @@
 </template>
 
 <script lang="ts">
+import "./common/style.css";
+import Vue from "vue";
 import NavBar from "./components/NavBar.vue";
-export default {
+export default Vue.extend({
     components: { NavBar },
-};
+});
 </script>
 
-<style scoped>
+<style>
 .router-view {
-    margin-top: 100px;
+    height: 100vh;
 }
 </style>
