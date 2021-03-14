@@ -1,14 +1,14 @@
 <template>
     <div>
-        <popular-anime></popular-anime>
+        <home-anime></home-anime>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import PopularAnime from "../../components/PopularAnime.vue";
+import HomeAnime from "../../components/HomeAnime.vue";
 export default Vue.extend({
-    components: { PopularAnime },
+    components: { HomeAnime },
 });
 </script>
 

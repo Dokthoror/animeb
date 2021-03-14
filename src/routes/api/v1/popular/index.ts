@@ -45,8 +45,9 @@ const options = {
 
 router.get("/", async (_req: Request, res: Response) => {
     const apiAnswer: PopularAnimes = await (await fetch(url, options)).json();
-    const animeNumber: number =
-        Math.round(Math.random() * apiAnswer.data.popular.media.length) - 1;
+    const animeNumber: number = Math.floor(
+        Math.random() * apiAnswer.data.popular.media.length
+    );
     res.json(apiAnswer.data.popular.media[animeNumber]);
 });
 
