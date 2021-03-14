@@ -15,6 +15,7 @@ export interface Media {
     title: Title;
     coverImage: CoverImage;
     description: string;
+    id: number;
     episodes: number;
     bannerImage: string;
 }

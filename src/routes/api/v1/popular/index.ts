@@ -23,6 +23,7 @@ query {
 		  extraLarge
 		  color
 		}
+		id
 		bannerImage
 		description
 		episodes
