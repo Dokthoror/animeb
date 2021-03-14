@@ -1,4 +1,4 @@
-export interface PopularAnime {
+export interface PopularAnimes {
     data: Data;
 }
 
