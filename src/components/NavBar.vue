@@ -16,10 +16,11 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from "vue";
+export default Vue.extend({
     data() {
         return {
-            scrolled: true,
+            scrolled: false,
         };
     },
     methods: {
@@ -30,7 +31,7 @@ export default {
     beforeMount() {
         window.addEventListener("scroll", this.onScroll);
     },
-};
+});
 </script>
 
 <style scoped>

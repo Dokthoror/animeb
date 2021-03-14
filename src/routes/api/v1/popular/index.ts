@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import fetch from "node-fetch";
-import { QueryType } from "./queryType";
+import { QueryType } from "../../../../common/popularAnimes.type";
 
 const router: Router = Router();
 
@@ -23,6 +23,7 @@ query {
 		  extraLarge
 		  color
 		}
+		bannerImage
 		description
 		episodes
 	  }
@@ -46,7 +47,7 @@ router.get("/", async (_req: Request, res: Response) => {
     const animeNumber: number = Math.round(
         Math.random() * (apiAnswer.data.Page.media.length - 1)
     );
-    res.json(apiAnswer.data.Page.media[animeNumber].title);
+    res.json(apiAnswer.data.Page.media[animeNumber]);
 });
 
 export default router;
