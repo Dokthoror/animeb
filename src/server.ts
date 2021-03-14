@@ -1,21 +1,12 @@
 import express from "express";
 import { join } from "path";
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
+import apiRouter from "./routes/apiRouter";
 
 const app: express.Express = express();
 
 app.use("/dist", express.static("public/dist"));
-
-app.get(
-    "/api/trending",
-    async (_req: express.Request, res: express.Response) => {
-        const apiAnswer = await fetch(
-            "https://kitsu.io/api/edge/trending/anime"
-        );
-        const json = await apiAnswer.json();
-        res.json(json);
-    }
-);
+app.use(apiRouter);
 
 app.get("*", (req, res) => {
     res.sendFile("public/index.html", { root: join("./") });
