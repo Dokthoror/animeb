@@ -1,4 +1,4 @@
-export interface QueryType {
+export interface PopularAnime {
     data: Data;
 }
 
