@@ -1,6 +1,7 @@
 import Router from "vue-router";
 
 const Home = () => import("./home/Home.vue");
+const Anime = () => import("./anime/Anime.vue");
 
 export default new Router({
     mode: "history",
@@ -12,6 +13,10 @@ export default new Router({
         {
             path: "/home",
             component: Home,
+        },
+        {
+            path: "/anime/:id",
+            component: Anime,
         },
     ],
 });
