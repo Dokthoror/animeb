@@ -4,6 +4,7 @@ import { PopularAnimes } from "../../../../common/popularAnimes.type";
 
 const router: Router = Router();
 
+const url = "https://graphql.anilist.co";
 const query = `
 {
 	popular: Page(page: 1, perPage: 20) {
@@ -31,7 +32,6 @@ const query = `
 	}
   }  
 `;
-const url = "https://graphql.anilist.co";
 const options = {
     method: "POST",
     headers: {
@@ -45,10 +45,14 @@ const options = {
 
 router.get("/", async (_req: Request, res: Response) => {
     const apiAnswer: PopularAnimes = await (await fetch(url, options)).json();
-    const animeNumber: number = Math.floor(
-        Math.random() * apiAnswer.data.popular.media.length
-    );
-    res.json(apiAnswer.data.popular.media[animeNumber]);
+    if (!apiAnswer.errors) {
+        const animeNumber: number = Math.floor(
+            Math.random() * apiAnswer.data!.popular.media.length
+        );
+        res.json(apiAnswer.data!.popular.media[animeNumber]);
+    } else {
+        res.json(apiAnswer.errors);
+    }
 });
 
 export default router;

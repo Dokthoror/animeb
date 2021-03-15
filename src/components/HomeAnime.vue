@@ -69,12 +69,7 @@ export default Vue.extend({
         const apiAnswer: Popular | Trending = await (
             await fetch(`/api/v1/${query.endpoint}`)
         ).json();
-        this.media.title = apiAnswer.title;
-        this.media.coverImage = apiAnswer.coverImage;
-        this.media.description = apiAnswer.description;
-        this.media.episodes = apiAnswer.episodes;
-        this.media.bannerImage = apiAnswer.bannerImage;
-        this.media.id = apiAnswer.id;
+        this.media = apiAnswer;
     },
 });
 </script>
