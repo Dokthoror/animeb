@@ -1,5 +1,6 @@
 export interface PopularAnimes {
-    data: Data;
+    data: Data | null;
+    errors: Error | undefined;
 }
 
 export interface Data {
@@ -36,4 +37,15 @@ export interface PageInfo {
     currentPage: number;
     lastPage: number;
     hasNextPage: boolean;
+}
+
+export interface Error {
+    message: string;
+    status: number;
+    locations: Location[];
+}
+
+export interface Location {
+    line: number;
+    column: number;
 }
