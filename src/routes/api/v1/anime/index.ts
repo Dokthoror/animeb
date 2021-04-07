@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import fetch from "node-fetch";
-import { AnimeType } from "../../../../common/Anime.type";
+import { AnimeType } from "../../../../common/anime.type";
 
 const router: Router = Router();
 

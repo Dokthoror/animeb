@@ -4,12 +4,9 @@
             <p class="text-4xl font-extrabold">{{ category }} now</p>
             <p class="text-3xl font-bold">{{ media.title.english }}</p>
             <p class="text-3xl italic font-bold">{{ media.title.native }}</p>
-            <p class="text-xl w-1/4" v-html="animeDesc"></p>
+            <p class="text-xl w-1/3" v-html="animeDesc"></p>
             <div class="m-1">
-                <a
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                    :href="`/anime/${media.id}`"
-                >
+                <a class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" :href="`/anime/${media.id}`">
                     More infos
                 </a>
             </div>
@@ -19,8 +16,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Media as Popular } from "../common/popularAnimes.type";
-import { Media as Trending } from "../common/trendingAnimes.type";
+import { Media as Popular } from "../../common/popularAnimes.type";
+import { Media as Trending } from "../../common/trendingAnimes.type";
 export default Vue.extend({
     data(): { category: string; media: Popular | Trending } {
         return {
@@ -44,9 +41,7 @@ export default Vue.extend({
     computed: {
         animeDesc(): string {
             const length: number = 300;
-            return this.media.description.length >= length
-                ? `${this.media.description.substring(0, length - 1)}...`
-                : this.media.description;
+            return this.media.description.length >= length ? `${this.media.description.substring(0, length - 1)}...` : this.media.description;
         },
         getBackground(): string {
             const color: string = this.media.coverImage.color || "#fff";
@@ -66,9 +61,7 @@ export default Vue.extend({
         ];
         const query = queryTypes[Math.floor(Math.random() * queryTypes.length)];
         this.category = query.category;
-        const apiAnswer: Popular | Trending = await (
-            await fetch(`/api/v1/${query.endpoint}`)
-        ).json();
+        const apiAnswer: Popular | Trending = await (await fetch(`/api/v1/${query.endpoint}`)).json();
         this.media = apiAnswer;
     },
 });
