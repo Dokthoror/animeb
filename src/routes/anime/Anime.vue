@@ -59,7 +59,6 @@ export default Vue.extend({
     async beforeMount() {
         const apiAnswer: Media = await (await fetch(`/api/v1/anime/${this.$route.params.id}`)).json();
         this.media = apiAnswer;
-        console.log(this.media);
         document.title = `AnimeB - ${this.media.title.english}`;
     },
 });
