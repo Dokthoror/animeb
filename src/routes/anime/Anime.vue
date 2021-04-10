@@ -1,35 +1,41 @@
 <template>
     <div>
-        <anime-desc
-            v-if="media.title.native"
-            :enTitle="media.title.english"
-            :naTitle="media.title.native"
-            :coverImage="media.coverImage.extraLarge"
-            :color="media.coverImage.color"
-            :episodes="media.episodes"
-            :desc="media.description"
-            :bannerImage="media.bannerImage"
-        ></anime-desc>
-        <anime-trailer
-            v-if="media.trailer && media.trailer.site"
-            :site="media.trailer.site"
-            :id="media.trailer.id"
-            :enTitle="media.title.english"
-            :tags="media.tags"
-            :studios="media.studios.edges"
-        ></anime-trailer>
+        <div v-if="media.title.native">
+            <anime-desc
+                v-if="media.title.native"
+                :enTitle="media.title.english"
+                :naTitle="media.title.native"
+                :coverImage="media.coverImage.extraLarge"
+                :color="media.coverImage.color"
+                :episodes="media.episodes"
+                :desc="media.description"
+                :bannerImage="media.bannerImage"
+            ></anime-desc>
+            <anime-trailer
+                v-bind="media.trailer"
+                :enTitle="media.title.english"
+                :naTitle="media.title.native"
+                :tags="media.tags"
+                :studios="media.studios.edges"
+                :averageScore="media.averageScore"
+            ></anime-trailer>
+        </div>
+        <div v-else class="h-full flex justify-center items-center">
+            <loader></loader>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Loader from "../../components/Loader.vue";
 import AnimeDesc from "../../components/Anime/AnimeDesc.vue";
 import AnimeTrailer from "../../components/Anime/AnimeTrailer.vue";
 import { Media } from "../../common/anime.type";
 Vue.use(VueRouter);
 export default Vue.extend({
-    components: { AnimeDesc, AnimeTrailer },
+    components: { AnimeDesc, AnimeTrailer, Loader },
     data(): { media: Media } {
         return {
             media: {

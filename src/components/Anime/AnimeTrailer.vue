@@ -1,28 +1,43 @@
 <template>
-    <div class="flex items-center justify-between py-8 bg-gray-900 h-3/4 px-28">
-        <div class="h-full w-3/5 flex flex-col items-center justify-center pr-6">
-            <p class="text-white text-3xl font-semibold">{{ enTitle }}'s trailer</p>
+    <div class="py-4 px-4 bg-gray-900 min-h-1/2 lg:flex lg:items-center lg:justify-between lg:px-28 lg:py-8">
+        <div class="w-full lg:w-1/2 lg:h-3/4 lg:flex lg:flex-col lg:items-center lg:pr-6">
+            <p class="text-white text-3xl font-semibold">{{ enTitle ? enTitle : naTitle }}'s trailer</p>
+            <br />
             <div class="h-full w-full flex justify-center">
-                <iframe class="h-full w-full" :src="getTrailerVideo" frameborder="0"></iframe>
+                <iframe class="w-full h-52 lg:h-96" :src="getTrailerVideo" frameborder="0" v-if="site && id"></iframe>
+                <div class="w-full flex justify-center items-center h-52 bg-gray-700 lg:h-96" v-else>
+                    <p class="text-4xl text-white font-semibold">No trailer available</p>
+                </div>
+            </div>
+            <br />
+            <div class="w-full flex items-center">
+                <div class="text-white font-semibold text-xl">Average score:</div>
+                <div
+                    class="m-4 rounded-full text-white w-16 h-16 flex items-center justify-center font-black"
+                    :class="{ green: averageScore >= 75, orange: averageScore >= 50 && averageScore < 75, red: averageScore < 50 }"
+                >
+                    {{ averageScore }}
+                </div>
             </div>
         </div>
-        <div class="flex flex-col items-center w-2/5">
+        <br />
+        <div class="lg:flex lg:flex-col lg:items-center lg:w-1/2">
             <p class="text-white text-3xl font-semibold w-full">More infos:</p>
             <br />
             <div class="flex w-full">
                 <div class="text-white font-semibold text-xl">Tags:</div>
                 <div>
-                    <a
+                    <router-link
                         type="button"
                         class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 rounded m-1"
-                        :href="`/tag/${tag.id}`"
+                        :to="`/tag/${tag.id}`"
                         v-for="tag in tags"
                         :key="tag.id"
-                        >{{ tag.name }}
-                    </a>
+                    >
+                        {{ tag.name }}
+                    </router-link>
                 </div>
             </div>
-            <br />
             <div class="flex w-full">
                 <div class="text-white font-semibold text-xl">Studios:</div>
                 <div class="flex flex-col">
@@ -47,6 +62,10 @@ export default Vue.extend({
         },
         enTitle: {
             type: String,
+            required: false,
+        },
+        naTitle: {
+            type: String,
             required: true,
         },
         tags: {
@@ -55,6 +74,10 @@ export default Vue.extend({
         },
         studios: {
             type: Array,
+            required: true,
+        },
+        averageScore: {
+            type: Number,
             required: true,
         },
     },
@@ -70,4 +93,16 @@ export default Vue.extend({
 });
 </script>
 
-<style></style>
+<style scoped>
+.green {
+    border: 5px solid green;
+}
+
+.orange {
+    border: 5px solid orange;
+}
+
+.red {
+    border: 5px solid red;
+}
+</style>

@@ -1,15 +1,15 @@
 <template>
-    <div class="h-screen" :style="getBackground">
-        <div class="h-full flex items-center pl-24 pr-24">
-            <img class="min-h-1/2 max-h-3/4 mr-4 shadow-2xl" :src="coverImage" alt="enTitle" />
-            <div class="flex flex-col">
-                <p class="text-5xl font-bold">{{ enTitle }}</p>
-                <p class="text-5xl italic font-bold">{{ naTitle }}</p>
-                <p class="text-3xl" v-if="episodes > 0">
+    <div class="min-h-screen" :style="getBackground">
+        <div class="h-full px-4 pt-28 pb-4 lg:flex lg:items-center lg:px-24 lg:pt-44">
+            <img class="hidden mr-4 shadow-2xl lg:block" :src="coverImage" :alt="enTitle ? enTitle : naTitle" />
+            <div class="lg:flex lg:flex-col">
+                <p class="text-3xl lg:text-5xl font-bold">{{ enTitle }}</p>
+                <p class="text-3xl lg:text-5xl italic font-bold">{{ naTitle }}</p>
+                <p class="text-lg lg:text-3xl" v-if="episodes > 0">
                     Number of episodes: <span class="font-bold">{{ episodes }}</span>
                 </p>
                 <br />
-                <p class="text-2xl" v-html="desc"></p>
+                <p class="text-lg lg:text-2xl" v-html="desc"></p>
             </div>
         </div>
     </div>
@@ -17,11 +17,13 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Loader from "../Loader.vue";
 export default Vue.extend({
+    components: { Loader },
     props: {
         enTitle: {
             type: String,
-            required: true,
+            required: false,
         },
         naTitle: {
             type: String,
