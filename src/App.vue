@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <nav-bar></nav-bar>
-        <router-view class="router-view"></router-view>
+        <router-view class="h-screen"></router-view>
     </div>
 </template>
 
@@ -14,8 +14,4 @@ export default Vue.extend({
 });
 </script>
 
-<style>
-.router-view {
-    height: 100vh;
-}
-</style>
+<style></style>
